@@ -225,9 +225,9 @@ public class MainActivity extends AppCompatActivity {
                     case "visibility":
                         parentRecyclerView.setVisibility(View.INVISIBLE);
                         linearLayout.setVisibility(View.VISIBLE);
-                        String album = sharedpreferences.getString("album","");
+                        String album = sharedpreferences.getString("ShowAlbum"," ");
                         Picasso.get()
-                                .load(sharedpreferences.getString(album+"/image",""))
+                                .load(sharedpreferences.getString(album+"/image"," "))
                                 .into(imageView);
                         String[] splitStr = album.split("/");
                         textView2.setText(splitStr[1]);
@@ -333,10 +333,11 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
 
-            String album = sharedpreferences.getString("album","");
+            String album = sharedpreferences.getString("ShowAlbum","");
 
             String topic = ""+adapterView.getItemAtPosition(i);
 
+            keepString("album",album);
             keepString("topic",topic);
             keepString("subject", album.substring(album.indexOf("/")+1));
             keepString("image",sharedpreferences.getString(album+"/image",""));
@@ -352,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
                 staticAlarmManager.cancel(staticPendingIntent);
         });
 
-        if(Float.parseFloat("1.2") < sharedpreferences.getFloat("version", Float.parseFloat("-1.0") ))
+        if(Float.parseFloat("1.3") < sharedpreferences.getFloat("version", Float.parseFloat("-1.0") ))
         button.setVisibility(View.VISIBLE);
         else button.setVisibility(View.INVISIBLE);
 

@@ -82,7 +82,7 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
 
         holder.itemView.setOnClickListener(view -> {
             ChildModel currentItem = childModelArrayList.get(holder.getAdapterPosition());
-            keepString("album", currentItem.getArtist()+"/"+currentItem.getAlbumName());
+            keepString("ShowAlbum", currentItem.getArtist()+"/"+currentItem.getAlbumName());
 
             Intent Bintent = new Intent("UI");
             Bintent.putExtra("key", "visibility");
