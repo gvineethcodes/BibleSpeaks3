@@ -354,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                 staticAlarmManager.cancel(staticPendingIntent);
         });
 
-        if(Float.parseFloat("1.3") < sharedpreferences.getFloat("version", Float.parseFloat("-1.0") ))
+        if(Float.parseFloat("1.4") < sharedpreferences.getFloat("version", Float.parseFloat("-1.0") ))
         button.setVisibility(View.VISIBLE);
         else button.setVisibility(View.INVISIBLE);
 
@@ -410,13 +410,14 @@ public class MainActivity extends AppCompatActivity {
         calendar = Calendar.getInstance();
 
 
-        if (calendar.get(Calendar.HOUR_OF_DAY) <=2) {
-            Log.e("my","2");
-
-            calendar.set(Calendar.HOUR_OF_DAY, 4);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
-        } else if((calendar.get(Calendar.HOUR_OF_DAY) >= 3 && calendar.get(Calendar.HOUR_OF_DAY) <= 6) || (calendar.get(Calendar.HOUR_OF_DAY) >= 16 && calendar.get(Calendar.HOUR_OF_DAY) <= 21)) {
+//        if (calendar.get(Calendar.HOUR_OF_DAY) <=2) {
+//            Log.e("my","2");
+//
+//            calendar.set(Calendar.HOUR_OF_DAY, 4);
+//            calendar.set(Calendar.MINUTE, 0);
+//            calendar.set(Calendar.SECOND, 0);
+//        } else
+        if((calendar.get(Calendar.HOUR_OF_DAY) >= 3 && calendar.get(Calendar.HOUR_OF_DAY) <= 6) || (calendar.get(Calendar.HOUR_OF_DAY) >= 16 && calendar.get(Calendar.HOUR_OF_DAY) <= 21)) {
             calendar.set(Calendar.HOUR_OF_DAY, (calendar.get(Calendar.HOUR_OF_DAY) + 1));
             //calendar.set(Calendar.MINUTE, (calendar.get(Calendar.MINUTE) + 2));
             calendar.set(Calendar.MINUTE, 0);
