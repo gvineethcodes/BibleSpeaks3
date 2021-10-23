@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -410,6 +411,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (calendar.get(Calendar.HOUR_OF_DAY) <=2) {
+            Log.e("my","2");
+
             calendar.set(Calendar.HOUR_OF_DAY, 4);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -423,10 +426,16 @@ public class MainActivity extends AppCompatActivity {
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
         } else{
-            calendar.set(Calendar.DAY_OF_WEEK,(calendar.get(Calendar.DAY_OF_WEEK) + 1));
+            //calendar.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+//            Log.e("my","nn = "+(calendar.get(Calendar.DAY_OF_WEEK) + 1));
+//            calendar.set(Calendar.DAY_OF_WEEK,(calendar.get(Calendar.DAY_OF_WEEK) + 1));
             calendar.set(Calendar.HOUR_OF_DAY, 4);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
+
+            if(calendar.before(Calendar.getInstance())) {
+                calendar.add(Calendar.DATE, 1);
+            }
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
