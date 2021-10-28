@@ -1,6 +1,7 @@
 package com.example.biblespeaks3;
 
 import static com.example.biblespeaks3.playService.mediaPlayer;
+import static com.example.biblespeaks3.playService.notificationIntent;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
@@ -190,16 +191,15 @@ public class MainActivity extends AppCompatActivity {
             keepBool("one",false);
 
         }
-/*
+
         Calendar calendar = Calendar.getInstance();
 
-        //if (sharedpreferences.getBoolean("checkBox", true) && staticPendingIntent == null && staticAlarmManager == null && calendar.get(Calendar.HOUR_OF_DAY)<22)
-        if(true&&true&&true&&false)
+        if (sharedpreferences.getBoolean("checkBox", true) && staticPendingIntent == null && staticAlarmManager == null && calendar.get(Calendar.HOUR_OF_DAY)<22)
         {
             setAlarming(this);
             //Toast.makeText(this, "a", Toast.LENGTH_SHORT).show();
         }
-*/
+
 
     }
 
@@ -315,6 +315,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 0);
 
+
+        if (notificationIntent!=null && notificationIntent.getAction() != null) {
+            switch (notificationIntent.getAction()) {
+                case "notificationPlay":
+                    Intent Bintent = new Intent("UI");
+                    Bintent.putExtra("key", "visibility");
+                    LocalBroadcastManager.getInstance(MainActivity.this).sendBroadcast(Bintent);
+                    break;
+            }
+        }
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -354,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
                 staticAlarmManager.cancel(staticPendingIntent);
         });
 
-        if(Float.parseFloat("1.4") < sharedpreferences.getFloat("version", Float.parseFloat("-1.0") ))
+        if(Float.parseFloat("1.6") < sharedpreferences.getFloat("version", Float.parseFloat("-1.0") ))
         button.setVisibility(View.VISIBLE);
         else button.setVisibility(View.INVISIBLE);
 

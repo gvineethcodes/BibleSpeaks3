@@ -72,6 +72,8 @@ public class ChildRecyclerViewAdapter extends RecyclerView.Adapter<ChildRecycler
             keepString("image", albumDetails.getAlbumImage());
             keepString("url", sharedpreferences.getString(album + "/" + topic, ""));
             keepString("album",album);
+            keepString("ShowAlbum",album);
+
             Intent Bintent = new Intent("UI");
             Bintent.putExtra("key", "enable");
             LocalBroadcastManager.getInstance(context).sendBroadcast(Bintent);

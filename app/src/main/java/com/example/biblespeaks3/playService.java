@@ -35,6 +35,7 @@ public class playService extends Service {
     SharedPreferences.Editor editor;
     public static playService playServiceInstance;
     public static MediaPlayer mediaPlayer = null;
+    public static Intent notificationIntent;
     MediaSessionCompat mediaSessionCompat;
     NotificationManager notificationManager;
 
@@ -228,11 +229,11 @@ public class playService extends Service {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     public void showNotification(Context context, boolean showButtons, int playPause) {
-        Intent notificationIntent = new Intent(context, com.example.biblespeaks3.MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 1, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //subject = sharedpreferences.getString("subject", " ");
         if (!showButtons) {
+            notificationIntent = new Intent(context, MainActivity.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 1, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             //img = null;
 
@@ -250,6 +251,9 @@ public class playService extends Service {
 
 
         } else {
+            notificationIntent = new Intent(context, MainActivity.class).setAction("notificationPlay");
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 1, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
             final Bitmap[] img = new Bitmap[1];
             Intent playI, prevI, nextI;
             PendingIntent playPI, prevPI, nextPI;
